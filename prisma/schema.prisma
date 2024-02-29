@@ -1,0 +1,80 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("POSTGRES_PRISMA_URL")
+  directUrl = env("POSTGRES_URL_NON_POOLING")
+
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  name          String?
+  password      String?
+  image         String?
+  emailVerified DateTime? @map(name: "email_verified")
+  accounts      Account[]
+  sessions      Session[]
+  shoppingLists ShoppingList[]
+  items         Item[]    // Adding the opposite relation field for the 'user' field in the Item model
+}
+
+model ShoppingList {
+  id           Int      @id @default(autoincrement())
+  name         String
+  status       Role     @default(ACTIVE)
+  userId       String   // Assuming this is a foreign key to the User model
+  items        Item[]
+  user         User     @relation(fields: [userId], references: [id])
+}
+
+model Item {
+  id               Int        @id @default(autoincrement())
+  name             String
+  userId           String     // Assuming this is a foreign key to the User model
+  shoppingListId   Int
+  status           Role       @default(ACTIVE)
+  shoppingList     ShoppingList @relation(fields: [shoppingListId], references: [id])
+  user             User       @relation(fields: [userId], references: [id])
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+enum Role {
+  ACTIVE
+  COMPLETED
+}
