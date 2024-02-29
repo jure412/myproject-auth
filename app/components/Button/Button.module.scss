@@ -1,0 +1,32 @@
+@import "../../global.module.scss";
+
+.button {
+  display: inline-block;
+  padding: ($grid-gutter / 2) ($grid-gutter);
+  background-color: $color-dark;
+  color: $color-info;
+  border-radius: $rounded-small;
+  text-decoration: none;
+  text-align: center;
+  font-size: $font-size-medium;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+
+  &:hover {
+    box-shadow: $shadow-medium;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:active {
+    background-color: $color-secondary-variant;
+  }
+
+  &:disabled {
+    background-color: $color-secondary-variant;
+  }
+}

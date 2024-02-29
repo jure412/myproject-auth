@@ -1,0 +1,33 @@
+@import "../../global.module.scss";
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  .spinner {
+    border: 4px solid $color-info;
+    border-top: 4px solid transparent;
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    animation: spin 1s linear infinite;
+  }
+}
+
+.loadingPage {
+  height: 50vh;
+  .spinner {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

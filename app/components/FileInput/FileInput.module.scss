@@ -1,0 +1,33 @@
+@import "../../global.module.scss";
+
+.fileInput {
+  position: relative;
+  display: flex;
+
+  .label {
+    display: inline-block;
+    line-height: 30px;
+    text-align: center;
+    height: 30px;
+    background-color: #eaeaea;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 110px;
+
+    .input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+      position: absolute;
+      z-index: -1;
+    }
+  }
+
+  .image {
+    margin-left: $grid-gutter;
+  }
+
+  .label:hover {
+    background-color: #dcdcdc;
+  }
+}

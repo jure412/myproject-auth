@@ -1,0 +1,21 @@
+@import "../../global.module.scss";
+
+.input {
+  label {
+    display: block;
+    font-weight: bold;
+    color: $color-dark;
+  }
+
+  input {
+    width: calc(100% - 12px);
+    padding: 5px;
+    border: 1px solid $color-dark;
+    border-radius: $rounded-small;
+    transition: all 0.2s ease-in-out;
+    &:focus-visible {
+      outline: none;
+      border: 1px solid $color-info;
+    }
+  }
+}
