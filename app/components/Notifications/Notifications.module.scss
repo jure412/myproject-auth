@@ -1,0 +1,36 @@
+@import "../../global.module.scss";
+
+.notifications {
+  position: fixed;
+  right: $grid-gutter;
+  bottom: $grid-gutter;
+
+  .notification {
+    max-width: 400px;
+    width: 100%;
+    margin-bottom: $grid-gutter;
+    padding: $grid-gutter / 2;
+    width: calc(100% - $grid-gutter);
+    border-radius: $rounded-small;
+
+    p {
+      color: $color-light;
+      margin: 0;
+    }
+    &.notificationDanger {
+      background: $color-danger;
+    }
+
+    &.notificationSuccess {
+      background: $color-success;
+    }
+
+    &.notificationWarning {
+      background: $color-warning;
+    }
+
+    &.notificationInfo {
+      background: $color-info;
+    }
+  }
+}
