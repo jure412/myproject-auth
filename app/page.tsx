@@ -1,15 +1,58 @@
-import { authOptions } from "@/utils/authOptions";
-import { getServerSession } from "next-auth";
+import { NextPage } from "next";
+import styles from "./global.module.scss";
 
-export default async function Home() {
-  // await new Promise((resolve) => setTimeout(resolve, 3000));
-  const data = await getServerSession(authOptions);
-  console.log({ data });
+const Home: NextPage = () => {
   return (
-    <div>
-      <span>
-        <span>Name: {data?.user.email || "No name"}</span>
-      </span>
-    </div>
+    <>
+      <h1>RESPONSIVE GRID</h1>
+      <div className={styles.row}>
+        <div
+          className={`${styles.col6} ${styles.colSm12} ${styles.colMd4} ${styles.colXl10}`}
+        >
+          <div
+            style={{ backgroundColor: "red", width: "auto", height: "50px" }}
+          ></div>
+        </div>
+        <div
+          className={`${styles.col6} ${styles.colSm12} ${styles.colMd4} ${styles.colXl1} `}
+        >
+          <div
+            style={{ backgroundColor: "red", width: "auto", height: "50px" }}
+          ></div>
+        </div>
+        <div
+          className={`${styles.col12} ${styles.colSm12} ${styles.colMd4} ${styles.colXl1} `}
+        >
+          <div
+            style={{ backgroundColor: "red", width: "auto", height: "50px" }}
+          ></div>
+        </div>
+      </div>
+
+      <div className={styles.row}>
+        <div
+          className={`${styles.col6} ${styles.colSm12} ${styles.colMd4} ${styles.colXl10}`}
+        >
+          <div
+            style={{ backgroundColor: "blue", width: "auto", height: "50px" }}
+          ></div>
+        </div>
+        <div
+          className={`${styles.col6} ${styles.colSm12} ${styles.colMd4} ${styles.colXl1} `}
+        >
+          <div
+            style={{ backgroundColor: "blue", width: "auto", height: "50px" }}
+          ></div>
+        </div>
+        <div
+          className={`${styles.col12} ${styles.colSm12} ${styles.colMd4} ${styles.colXl1} `}
+        >
+          <div
+            style={{ backgroundColor: "blue", width: "auto", height: "50px" }}
+          ></div>
+        </div>
+      </div>
+    </>
   );
-}
+};
+export default Home;
