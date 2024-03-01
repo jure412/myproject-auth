@@ -75,17 +75,3 @@ export async function POST(request: NextRequest) {
     message: "Successfully Registered",
   });
 }
-
-const updateUserNameSchema = z.object({
-  email: z
-    .string()
-    .min(1, "This field has to be filled.")
-    .email("This is not a valid email.")
-    .refine(async (email: string) => {
-      const user = await prisma.user.findUnique({
-        where: { email },
-      });
-      return user;
-    }, "Email not found"),
-  name: z.string().min(3, "name should be minimum 3 characters"),
-});
