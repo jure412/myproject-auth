@@ -8,4 +8,5 @@ export enum NotificationType {
 export enum ModalType {
   UPDATE_USER_NAME = "UpdateUserName",
   UPDATE_USER_PASSWORD = "UpdateUserPassword",
+  CREATE_NEW_SHOPPING_LIST = "CreateNewShoppingList",
 }
