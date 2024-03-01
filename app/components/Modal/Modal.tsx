@@ -3,6 +3,7 @@ import { ModalType } from "@/enums";
 import { FC, ReactNode, createContext, useState } from "react";
 import styles from "./Modal.module.scss";
 import UpdateUserName from "./ModalContent/UpdateUserName";
+import UpdateUserPassword from "./ModalContent/UpdateUserPassword";
 
 export interface ModalContextValue {
   modal: ModalType | null;
@@ -16,7 +17,7 @@ const modalSelector = (name: ModalType) => {
     case ModalType.UPDATE_USER_NAME:
       return <UpdateUserName />;
     case ModalType.UPDATE_USER_PASSWORD:
-      return "hey";
+      return <UpdateUserPassword />;
     default:
       break;
   }
