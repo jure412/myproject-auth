@@ -1,27 +1,15 @@
-"use client";
-import { signOut, useSession } from "next-auth/react";
+import { authOptions } from "@/utils/authOptions";
+import { getServerSession } from "next-auth";
 
-export default function Home() {
-  // const data = await getServerSession(authOptions);
-  const { data: session, status } = useSession();
-  console.log({ session });
+export default async function Home() {
+  await new Promise((resolve) => setTimeout(resolve, 3000));
+  const data = await getServerSession(authOptions);
+  console.log({ data });
   return (
     <div>
-      {status === "authenticated" ? (
-        <span>
-          <span>Name: {session?.user.email || "No name"}</span>
-          <span
-            style={{ marginLeft: "100px" }}
-            onClick={() => {
-              signOut();
-            }}
-          >
-            logout
-          </span>
-        </span>
-      ) : (
-        <span>you are loggred out</span>
-      )}
+      <span>
+        <span>Name: {data?.user.email || "No name"}</span>
+      </span>
     </div>
   );
 }
