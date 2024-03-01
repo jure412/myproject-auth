@@ -3,6 +3,7 @@
 .fileInput {
   position: relative;
   display: flex;
+  flex-direction: column;
 
   .label {
     display: inline-block;
@@ -12,7 +13,7 @@
     background-color: #eaeaea;
     border-radius: 4px;
     cursor: pointer;
-    width: 110px;
+    width: 100%;
 
     .input {
       opacity: 0;
@@ -24,6 +25,7 @@
   }
 
   .image {
+    margin-top: $grid-gutter;
     margin-left: $grid-gutter;
   }
 
