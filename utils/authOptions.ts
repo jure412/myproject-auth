@@ -1,7 +1,7 @@
 import { prisma } from "@/app/prisma";
 import { NotificationType } from "@/enums";
 import { PrismaAdapter } from "@auth/prisma-adapter";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GitHubProvider from "next-auth/providers/github";
