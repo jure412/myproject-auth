@@ -11,7 +11,7 @@ const GithubButton: FC = () => {
         setIsLoading(false);
       }
     };
-  }, []);
+  });
 
   const handleGithubSubmit = async () => {
     setIsLoading(true);

@@ -170,7 +170,6 @@ export async function PATCH(req: NextRequest) {
   }
   const hashedPassword = await bcrypt.hash(password, 10);
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { password: pass, ...newUser } = await prisma.user.update({
     where: {
       email,
