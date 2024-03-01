@@ -21,6 +21,8 @@ const Header = () => {
         </>
       ) : (
         <>
+          <Link href="/shoppingList">ShoppingList</Link>
+          <Link href="/profile">Profile</Link>
           <LinkOnClick
             onClick={() => {
               signOut();
