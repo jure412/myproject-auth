@@ -1,4 +1,5 @@
 import { ModalType } from "@/enums";
+import { authOptions } from "@/utils/authOptions";
 import { getServerSession } from "next-auth";
 import Image from "next/image";
 import ModalButton from "../components/Modal/ModalComponents/ModalButton";
@@ -6,9 +7,7 @@ import styles from "../global.module.scss";
 import { blurDataUrl } from "../helpers";
 
 const Profile = async () => {
-  await new Promise((resolve) => setTimeout(resolve, 3000));
-  const data = await getServerSession();
-  console.log({ data });
+  const data = await getServerSession(authOptions);
 
   return (
     <>
@@ -37,7 +36,7 @@ const Profile = async () => {
         </div>
         <div className={styles.col6}>
           <ModalButton modalType={ModalType.UPDATE_USER_PASSWORD}>
-            Update user
+            Update password
           </ModalButton>
         </div>
       </div>
