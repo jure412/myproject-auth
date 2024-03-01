@@ -4,3 +4,8 @@ export enum NotificationType {
   WARNING = "Warning",
   INFO = "Info",
 }
+
+export enum ModalType {
+  UPDATE_USER_NAME = "UpdateUserName",
+  UPDATE_USER_PASSWORD = "UpdateUserPassword",
+}

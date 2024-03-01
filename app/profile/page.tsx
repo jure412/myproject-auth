@@ -1,5 +1,7 @@
+import { ModalType } from "@/enums";
 import { getServerSession } from "next-auth";
 import Image from "next/image";
+import ModalButton from "../components/Modal/ModalComponents/ModalButton";
 import styles from "../global.module.scss";
 import { blurDataUrl } from "../helpers";
 
@@ -29,14 +31,14 @@ const Profile = async () => {
       </div>
       <div className={styles.row}>
         <div className={styles.col6}>
-          {/* <ModalButton modalType={ModalType.UPDATE_USER_NAME}>
+          <ModalButton modalType={ModalType.UPDATE_USER_NAME}>
             Update user
-          </ModalButton> */}
+          </ModalButton>
         </div>
         <div className={styles.col6}>
-          {/* <ModalButton modalType={ModalType.UPDATE_USER_PASSWORD}>
+          <ModalButton modalType={ModalType.UPDATE_USER_PASSWORD}>
             Update user
-          </ModalButton> */}
+          </ModalButton>
         </div>
       </div>
     </>
