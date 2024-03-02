@@ -1,0 +1,26 @@
+@import "../../global.module.scss";
+
+.ShoppingListCollapse {
+  padding: 0 ($grid-gutter * 2);
+  border-radius: $rounded-small;
+  cursor: pointer;
+  .banner {
+    display: flex;
+    justify-content: space-between;
+  }
+  &:hover {
+    box-shadow: $shadow-medium;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:active {
+    background-color: $color-secondary-variant;
+  }
+
+  &:disabled {
+    background-color: $color-secondary-variant;
+  }
+}
