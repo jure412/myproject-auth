@@ -1,6 +1,6 @@
 "use server";
 
-import { NotificationType, StatusType } from "@/enums";
+import { NotificationType } from "@/enums";
 import { Role } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
@@ -84,7 +84,7 @@ export const createShoppingListStatusCompleted = async (formData: FormData) => {
       id: Number(shoppingListId), // Assuming `shoppingListId` is the ID field
     },
     data: {
-      status: StatusType.COMPLETED,
+      status: Role.COMPLETED,
     },
   });
   revalidatePath("/");
