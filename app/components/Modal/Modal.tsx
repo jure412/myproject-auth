@@ -2,6 +2,7 @@
 import { ModalType } from "@/enums";
 import { FC, ReactNode, createContext, useState } from "react";
 import styles from "./Modal.module.scss";
+import CreateNewItem from "./ModalContent/CreateNewItem";
 import CreateNewShoppingList from "./ModalContent/CreateNewShoppingList";
 import UpdateUserName from "./ModalContent/UpdateUserName";
 import UpdateUserPassword from "./ModalContent/UpdateUserPassword";
@@ -21,6 +22,8 @@ const modalSelector = (name: ModalType) => {
       return <UpdateUserPassword />;
     case ModalType.CREATE_NEW_SHOPPING_LIST:
       return <CreateNewShoppingList />;
+    case ModalType.CREATE_NEW_ITEM:
+      return <CreateNewItem />;
     default:
       break;
   }
