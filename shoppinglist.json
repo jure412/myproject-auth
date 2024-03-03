@@ -1,0 +1,26 @@
+[
+  {
+    "name": "mleko-brez-laktoe",
+    "status": "ACTIVE"
+  },
+  {
+    "name": "jajca",
+    "status": "COMPLETED"
+  },
+  {
+    "name": "maslo",
+    "status": "ACTIVE"
+  },
+  {
+    "name": "sok",
+    "status": "COMPLETED"
+  },
+  {
+    "name": "coca-cola",
+    "status": "COMPLETED"
+  },
+  {
+    "name": "voda",
+    "status": "COMPLETED"
+  }
+]
