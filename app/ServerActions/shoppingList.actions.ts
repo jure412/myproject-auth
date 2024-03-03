@@ -218,3 +218,57 @@ export const createShoppingListItemCompleted = async (formData: FormData) => {
     success: true,
   };
 };
+
+const validateDeleteShoppingListItem = z.object({
+  id: z
+    .string()
+    .min(1, "User doesn't exists")
+    .refine(async (id: string) => {
+      const item = await prisma.item.findUnique({
+        where: { id: Number(id) },
+      });
+      return item;
+    }, "Item not found"),
+  shoppingListId: z
+    .string()
+    .min(1, "Shopping list doesn't exists")
+    .refine(async (shoppingListId: string) => {
+      const shoppingList = await prisma.shoppingList.findUnique({
+        where: { id: Number(shoppingListId) },
+      });
+      return shoppingList;
+    }, "Shopping list not found"),
+});
+
+export const deleteShoppingListItem = async (formData: FormData) => {
+  const id = formData.get("id");
+  const shoppingListId = formData.get("shoppingListId");
+
+  const validationRes = await validateDeleteShoppingListItem.safeParseAsync({
+    shoppingListId,
+    id,
+  });
+  if (!validationRes.success) {
+    const validationErrors = validationRes.error.errors.map(
+      ({ message }: { message: string }) => ({
+        message,
+        type: NotificationType.DANGER,
+      })
+    );
+    return { error: validationErrors, success: false };
+  }
+
+  const item = await prisma.item.delete({
+    where: {
+      id: Number(id),
+    },
+  });
+
+  revalidatePath("/shoppingList");
+  revalidatePath("/shoppingList/" + shoppingListId);
+
+  return {
+    data: item,
+    success: true,
+  };
+};
