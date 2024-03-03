@@ -4,6 +4,7 @@ import { createShoppingListStatusCompleted } from "@/app/ServerActions/shoppingL
 import { NotificationType } from "@/enums";
 import { Role } from "@prisma/client";
 import { FC, useContext, useState } from "react";
+import styles from "../../global.module.scss";
 import Loading from "../Loading/Loading";
 import { ModalContext } from "../Modal/Modal";
 import { NotificationContext } from "../Notifications/Notifications";
@@ -39,27 +40,28 @@ const StatusUpdate: FC<StatusUpdateProps> = ({ id, status }) => {
     setIsLoading(false);
   };
   return (
-    <span>
+    <>
       {isLoading ? (
         <Loading />
       ) : (
-        <span>
+        <>
           {status == Role.ACTIVE ? (
-            <div onClick={handleSubmit}>
-              <span>mark as </span>
-              <span style={{ color: "red", cursor: "pointer" }}>COMPLETED</span>
-            </div>
-          ) : (
-            <div>
-              <span>marked as </span>
-              <span style={{ color: "green", cursor: "pointer" }}>
-                COMPLETED
+            <p className={`${styles.ml3}`} onClick={handleSubmit}>
+              <span
+                className={`${styles.cSuccess}`}
+                style={{ cursor: "pointer" }}
+              >
+                mark as COMPLETED
               </span>
-            </div>
+            </p>
+          ) : (
+            <p className={`${styles.ml3}`}>
+              <span>marked as COMPLETED</span>
+            </p>
           )}
-        </span>
+        </>
       )}
-    </span>
+    </>
   );
 };
 
