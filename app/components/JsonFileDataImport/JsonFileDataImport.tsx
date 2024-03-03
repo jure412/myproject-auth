@@ -39,11 +39,11 @@ const JsonFileDataImport: FC<JsonFileDataImportProps> = ({ id }) => {
         ];
 
         notifications?.setNotifications(responseUpdate);
-        router.refresh();
       } else {
         notifications?.setNotifications(res?.error);
       }
     }
+    router.refresh();
   };
   return (
     <FileInput
