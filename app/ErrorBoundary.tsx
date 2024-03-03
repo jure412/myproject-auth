@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import styles from "./global.module.scss";
 
 type ErrorBoundaryProps = {
   children: React.ReactNode;
@@ -23,7 +24,13 @@ const ErrorBoundary: React.FC<ErrorBoundaryProps> = ({ children }) => {
   if (hasError) {
     return (
       <div>
-        <h1>Something went wrong.</h1>
+        <main className={`${styles.container}`}>
+          <h1>
+            <span className={`${styles.cWarning}`}>
+              Something went wrong - 404
+            </span>
+          </h1>
+        </main>
       </div>
     );
   }
