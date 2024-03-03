@@ -1,14 +1,19 @@
 "use client";
 import { createShoppingListItem } from "@/app/ServerActions/shoppingList.actions";
+import { NotificationType } from "@/enums";
 import { useSession } from "next-auth/react";
 import { useParams } from "next/navigation";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import styles from "../../../global.module.scss";
 import Button from "../../Button/Button";
 import Input from "../../Input/Input";
+import { NotificationContext } from "../../Notifications/Notifications";
+import { ModalContext } from "../Modal";
 
 const CreateNewItem = () => {
   const { data: session } = useSession();
+  const notifications = useContext(NotificationContext);
+  const modal = useContext(ModalContext);
   const params = useParams();
   const param_id = params.id;
   const { data } = useSession();
@@ -26,7 +31,19 @@ const CreateNewItem = () => {
       formData.append("name", name);
       formData.append("shoppingListId", param_id.toString());
       formData.append("userId", session?.user.id);
-      await createShoppingListItem(formData);
+      const res = await createShoppingListItem(formData);
+      if (res.success) {
+        const responseUpdate = [
+          {
+            type: NotificationType.SUCCESS,
+            message: "User updated!",
+          },
+        ];
+        notifications?.setNotifications(responseUpdate);
+        modal?.setModal(null);
+      } else {
+        notifications?.setNotifications(res.error!);
+      }
       setIsLoading(false);
     }
   };
