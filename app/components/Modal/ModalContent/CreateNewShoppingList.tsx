@@ -13,8 +13,7 @@ const CreateNewShoppingList = () => {
   const { data: session } = useSession();
   const notifications = useContext(NotificationContext);
   const modal = useContext(ModalContext);
-  const { data } = useSession();
-  const [name, setName] = useState(data?.user.name);
+  const [name, setName] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const handleInputChange = (_: string, value: string) => {
     setName(value);

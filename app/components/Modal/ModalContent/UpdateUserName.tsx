@@ -15,7 +15,7 @@ const UpdateUserName = () => {
   const router = useRouter();
   const modal = useContext(ModalContext);
   const { data, update } = useSession();
-  const [name, setName] = useState(data?.user.name);
+  const [name, setName] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const handleInputChange = (_: string, value: string) => {
     setName(value);

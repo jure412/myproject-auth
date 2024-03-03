@@ -10,7 +10,7 @@ const ShoppingList = async () => {
   const res = await fetch("http://localhost:3000/api/shoppingList", {
     cache: "no-cache",
     method: "GET",
-    // I'm not sure way of passing the header would work in production.
+    // I'm not sure this way of passing the header would work in production.
     headers: headers(),
   });
   const data = await res.json();

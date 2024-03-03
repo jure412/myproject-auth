@@ -16,8 +16,7 @@ const CreateNewItem = () => {
   const modal = useContext(ModalContext);
   const params = useParams();
   const param_id = params.id;
-  const { data } = useSession();
-  const [name, setName] = useState(data?.user.name);
+  const [name, setName] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const handleInputChange = (_: string, value: string) => {
     setName(value);
