@@ -1,4 +1,4 @@
-PGAdmin available on http://localhost:8888/browser/
+PGAdmin available on http://localhost:8888/browser/ -> db credentials are provided in POSTGRES_PRISMA_URL url
 db runs on http://localhost:5432/
 
 create .env file
@@ -19,6 +19,37 @@ then run commmands:
 - npx prisma generate
 - npx prisma migrate dev
 - npm run dev
+
+make sure that when importing json file on shopping list, has content formated like json code below:
+
+[
+{
+"name": "mleko-brez-laktoe",
+"status": "ACTIVE"
+},
+{
+"name": "jajca",
+"status": "COMPLETED"
+},
+{
+"name": "maslo",
+"status": "ACTIVE"
+},
+{
+"name": "sok",
+"status": "COMPLETED"
+},
+{
+"name": "coca-cola",
+"status": "COMPLETED"
+},
+{
+"name": "voda",
+"status": "COMPLETED"
+}
+]
+
+shoppinglist,.json file is provided in the root of the project..
 
 CLI file IMPORT
 
@@ -46,3 +77,8 @@ CLI file EXPORT
 curl -X GET "http://localhost:3000/api/items?id=3&type=json" -H "Authorization: Bearer $AUTH_TOKEN" -o response.json
 
 file is found in the root of the project
+
+PS
+
+- Prva verzija ima samo "en spisek” (one list for all users), ki ga vsi urejajo. Ne omogoča več nakupovalnih listkov.
+  naredil sem drugo verzijo :D sepravi več listkov in novega lahko odpreš, šele ko so vsi prejšnji nakupovalni listki označeni kot COMPLETED..
