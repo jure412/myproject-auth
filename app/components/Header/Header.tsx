@@ -21,7 +21,7 @@ const Header = () => {
         </>
       ) : (
         <>
-          <Link href="/shoppingList">ShoppingList</Link>
+          <Link href="/shoppingList">ShoppingLists</Link>
           <Link href="/profile">Profile</Link>
           <LinkOnClick
             onClick={() => {
