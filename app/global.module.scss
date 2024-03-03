@@ -32,6 +32,83 @@
   }
 }
 
+.cPrimary {
+  color: $color-primary;
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.bgPrimary {
+  background-color: $color-primary;
+}
+
+.cSecondary {
+  color: $color-secondary;
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.bgSecondary {
+  background-color: $color-secondary;
+}
+
+.cSuccess {
+  color: $color-success;
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.bgSuccess {
+  background-color: $color-success;
+}
+
+.cDanger {
+  color: $color-danger;
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.bgDanger {
+  background-color: $color-danger;
+}
+
+.cWarning {
+  color: $color-warning;
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.bgWarning {
+  background-color: $color-warning;
+}
+
+.cSeethrough {
+  color: $color-primary-seethrough;
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.bgSeethrough {
+  background-color: $color-primary-seethrough;
+}
+
+.cInfo {
+  color: $color-info;
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.bgInfo {
+  background-color: $color-info;
+}
+
 .default {
   margin: 0;
   padding: 0;
@@ -124,5 +201,85 @@
       @include col;
       flex: 0 0 calc(percentage(($i / 12)) - $grid-gutter);
     }
+  }
+}
+
+@for $i from 1 through 8 {
+  .m#{$i} {
+    margin: calc($i * ($grid-gutter / 4));
+  }
+  .mx#{$i} {
+    margin: 0 calc($i * ($grid-gutter / 4));
+  }
+  .my#{$i} {
+    margin: calc($i * ($grid-gutter / 4)) 0;
+  }
+  .mr#{$i} {
+    margin-right: calc($i * ($grid-gutter / 4));
+  }
+  .ml#{$i} {
+    margin-left: calc($i * ($grid-gutter / 4));
+  }
+  .mt#{$i} {
+    margin-top: calc($i * ($grid-gutter / 4));
+  }
+  .mb#{$i} {
+    margin-bottom: calc($i * ($grid-gutter / 4));
+  }
+  .p#{$i} {
+    padding: calc($i * ($grid-gutter / 4));
+  }
+  .px#{$i} {
+    padding: 0 calc($i * ($grid-gutter / 4));
+  }
+  .py#{$i} {
+    padding: 0 calc($i * ($grid-gutter / 4));
+  }
+  .pr#{$i} {
+    padding-right: calc($i * ($grid-gutter / 4));
+  }
+  .pl#{$i} {
+    padding-left: calc($i * ($grid-gutter / 4));
+  }
+  .pt#{$i} {
+    padding-top: calc($i * ($grid-gutter / 4));
+  }
+  .pb#{$i} {
+    padding-bottom: calc($i * ($grid-gutter / 4));
+  }
+}
+
+.mlAuto {
+  margin-left: auto;
+}
+.mrAuto {
+  margin-right: auto;
+}
+
+.action_box {
+  &.action_box_open {
+    background-color: $color-primary-seethrough;
+  }
+  border-radius: $rounded-small;
+  padding: 16px;
+  cursor: pointer;
+  .banner {
+    display: flex;
+    justify-content: space-between;
+  }
+  &:hover {
+    box-shadow: $shadow-medium;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:active {
+    background-color: $color-secondary-variant;
+  }
+
+  &:disabled {
+    background-color: $color-secondary-variant;
   }
 }
