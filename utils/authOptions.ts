@@ -42,7 +42,6 @@ export const authOptions: AuthOptions = {
         },
       },
       async authorize(credentials, _) {
-        console.log({ credentials });
         const validationRes = loginUserSchema.safeParse(credentials);
 
         if (!validationRes.success) {
@@ -82,7 +81,6 @@ export const authOptions: AuthOptions = {
             ])
           );
         }
-        console.log({ data });
         return data;
       },
     }),
@@ -93,9 +91,9 @@ export const authOptions: AuthOptions = {
       const { password, ...tokenRest } = token;
       if (tokenRest) {
         session.user = tokenRest;
-        return session;
+        return { ...session };
       }
-      return session;
+      return { ...session };
     },
 
     jwt: ({ token, user, trigger, session }: any) => {
