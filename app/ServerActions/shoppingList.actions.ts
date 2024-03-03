@@ -96,27 +96,41 @@ export const createShoppingListStatusCompleted = async (formData: FormData) => {
   };
 };
 
-const validateShoppingListItem = z.object({
-  userId: z
-    .string()
-    .min(1, "User doesn't exists")
-    .refine(async (userId: string) => {
-      const user = await prisma.user.findUnique({
-        where: { id: userId },
+const validateShoppingListItem = z
+  .object({
+    userId: z
+      .string()
+      .min(1, "User doesn't exists")
+      .refine(async (userId: string) => {
+        const user = await prisma.user.findUnique({
+          where: { id: userId },
+        });
+        return user;
+      }, "User not found"),
+    shoppingListId: z
+      .string()
+      .min(1, "Shopping list doesn't exists")
+      .refine(async (shoppingListId: string) => {
+        const shoppingList = await prisma.shoppingList.findUnique({
+          where: { id: Number(shoppingListId) },
+        });
+        return shoppingList;
+      }, "Shopping list not found"),
+    name: z.string().min(1, "Name should be minimum 1 characters"),
+  })
+  .superRefine(async ({ name, shoppingListId }, ctx) => {
+    const item = await prisma.item.findFirst({
+      where: {
+        AND: [{ name: name }, { shoppingListId: Number(shoppingListId) }],
+      },
+    });
+    if (item) {
+      ctx.addIssue({
+        code: "custom",
+        message: "Name is already used on this shopping list.",
       });
-      return user;
-    }, "User not found"),
-  shoppingListId: z
-    .string()
-    .min(1, "Shopping list doesn't exists")
-    .refine(async (shoppingListId: string) => {
-      const shoppingList = await prisma.shoppingList.findUnique({
-        where: { id: Number(shoppingListId) },
-      });
-      return shoppingList;
-    }, "Shopping list not found"),
-  name: z.string().min(1, "Name should be minimum 1 characters"),
-});
+    }
+  });
 
 export const createShoppingListItem = async (formData: FormData) => {
   const name = formData.get("name");
@@ -128,7 +142,6 @@ export const createShoppingListItem = async (formData: FormData) => {
     name,
     userId,
   });
-
   if (!validationRes.success) {
     const validationErrors = validationRes.error.errors.map(
       ({ message }: { message: string }) => ({
@@ -160,13 +173,13 @@ const RoleTypeZod = z.nativeEnum(Role);
 const validateShoppingListItemCompleted = z.object({
   id: z
     .string()
-    .min(1, "Shopping list doesn't exists")
+    .min(1, "Item doesn't exists")
     .refine(async (id: string) => {
-      const shoppingList = await prisma.shoppingList.findUnique({
+      const items = await prisma.item.findUnique({
         where: { id: Number(id) },
       });
-      return shoppingList;
-    }, "Shopping list  not found"),
+      return items;
+    }, "Items  not found"),
   status: RoleTypeZod,
 });
 
@@ -191,7 +204,7 @@ export const createShoppingListItemCompleted = async (formData: FormData) => {
 
   const item = await prisma.item.update({
     where: {
-      id: Number(id), // Assuming `shoppingListId` is the ID field
+      id: Number(id),
     },
     data: {
       status: status as Role,
